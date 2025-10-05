@@ -220,7 +220,4 @@ Especificação OpenAPI JSON:
 
 ## 📄 Licença
 
-Este projeto foi desenvolvido para fins **acadêmicos (FIAP)**.  
-Sinta-se à vontade para estudar, testar e modificar o código.
-
-**© 2025 — FIAP | Engenharia de Software**
+Este projeto foi desenvolvido pela Luiza Macena

@@ -3,80 +3,56 @@ package com.fiap.restapi.service;
 import com.fiap.restapi.model.Professor;
 import com.fiap.restapi.repository.ProfessorRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 @Service
 public class ProfessorService {
 
-    private final ProfessorRepository repository;
-    private static final Pattern EMAIL = Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+    private final ProfessorRepository repo;
 
-    public ProfessorService(ProfessorRepository repository) {
-        this.repository = repository;
+    public ProfessorService(ProfessorRepository repo) {
+        this.repo = repo;
     }
 
     public Professor adicionar(String nome, String departamento, String email, String titulacao) {
-        validarObrigatorio(nome, "Nome");
-        validarObrigatorio(departamento, "Departamento");
-        validarEmail(email);
-        validarTitulacao(titulacao);
-
+        validar(nome, departamento, email, titulacao);
         Professor professor = new Professor(null, nome.trim(), departamento.trim(), email.trim(), titulacao.trim());
-
-        return repository.adicionar(professor);
+        return repo.adicionar(professor);
     }
 
     public Optional<Professor> buscarPorId(Long id) {
-        validarId(id);
-        return repository.buscarPorId(id);
+        if (id == null || id <= 0) throw new IllegalArgumentException("Id inválido");
+        return repo.buscarPorId(id);
     }
 
     public List<Professor> listar() {
-        return repository.listar();
+        return repo.listar();
     }
 
     public Optional<Professor> atualizar(Long id, String nome, String departamento, String email, String titulacao) {
-        validarId(id);
-        nome = trim(nome);
-        departamento = trim(departamento);
-        email = trim(email);
-        titulacao = trim(titulacao);
-
-        validarObrigatorio(nome, "Nome");
-        validarObrigatorio(departamento, "Departamento");
-        validarEmail(email);
-        validarTitulacao(titulacao);
-
-        Professor p = new Professor(id, nome, departamento, email, titulacao);
-        return repository.atualizar(id, p);
+        if (id == null || id <= 0) throw new IllegalArgumentException("Id inválido");
+        validar(nome, departamento, email, titulacao);
+        Professor professor = new Professor(id, nome.trim(), departamento.trim(), email.trim(), titulacao.trim());
+        return repo.atualizar(id, professor);
     }
 
     public boolean deletar(Long id) {
-        validarId(id);
-        return repository.deletar(id);
+        if (id == null || id <= 0) throw new IllegalArgumentException("Id inválido");
+        return repo.deletar(id);
     }
 
-    private void validarId(Long id) {
-        if (id == null || id <= 0) throw new IllegalArgumentException("ID inválido.");
-    }
+    // Validação dos dados
+    private void validar(String nome, String departamento, String email, String titulacao) {
+        if (nome == null || nome.isBlank()) throw new IllegalArgumentException("Nome é obrigatório");
+        if (departamento == null || departamento.isBlank()) throw new IllegalArgumentException("Departamento é obrigatório");
+        if (email == null || email.isBlank()) throw new IllegalArgumentException("Email é obrigatório");
+        if (titulacao == null || titulacao.isBlank()) throw new IllegalArgumentException("Titulação é obrigatória");
 
-    private void validarObrigatorio(String v, String campo) {
-        if (v == null || v.isEmpty()) throw new IllegalArgumentException(campo + " é obrigatório.");
-    }
-
-    private void validarEmail(String email) {
-        if (email == null || email.isEmpty() || !EMAIL.matcher(email).matches())
-            throw new IllegalArgumentException("Email inválido.");
-    }
-
-    private void validarTitulacao(String titulacao) {
-        if (titulacao != null && titulacao.length() > 80)
-            throw new IllegalArgumentException("Titulação deve ter no máximo 80 caracteres.");
-    }
-
-    private String trim(String s) {
-        return s == null ? null : s.trim();
+        if (nome.length() > 150) throw new IllegalArgumentException("Nome excede 150 caracteres");
+        if (departamento.length() > 150) throw new IllegalArgumentException("Departamento excede 150 caracteres");
+        if (email.length() > 150) throw new IllegalArgumentException("Email excede 150 caracteres");
+        if (titulacao.length() > 100) throw new IllegalArgumentException("Titulação excede 100 caracteres");
     }
 }

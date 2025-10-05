@@ -1,0 +1,153 @@
+type: collection.insomnia.rest/5.0
+name: Professores
+meta:
+  id: wrk_6f4a97ef35a44616853404255bc370c1
+  created: 1759614189121
+  modified: 1759614189121
+  description: ""
+collection:
+  - url: http://localhost:8081/api/professores
+    name: Listar
+    meta:
+      id: req_18878375ac764c45b4dbd6a8d76a5722
+      created: 1759602959389
+      modified: 1759614199224
+      isPrivate: false
+      description: ""
+      sortKey: -1759602959389
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8081/api/professores
+    name: Adicionar
+    meta:
+      id: req_69890371da494436898e1ecce8a358eb
+      created: 1759603017365
+      modified: 1759614214727
+      isPrivate: false
+      description: ""
+      sortKey: -1759603017365
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Roger",
+        	"departamento": "Front-End",
+        	"email": "roger@example.com",
+        	"titulacao": "Doutor"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8081/api/professores/1
+    name: Buscar Por ID
+    meta:
+      id: req_a4f0beee16404ce5861133ce9c7a0653
+      created: 1759603122991
+      modified: 1759614237479
+      isPrivate: false
+      description: ""
+      sortKey: -1759603122991
+    method: GET
+    parameters:
+      - name: ""
+        value: ""
+        disabled: false
+        id: pair_4527b4d05d7a499db6bb2a9b27669934
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8081/api/professores/1
+    name: Atualizar
+    meta:
+      id: req_79c9ec69defb40ada1730de972cbf897
+      created: 1759603288942
+      modified: 1759614294975
+      isPrivate: false
+      description: ""
+      sortKey: -1759603288942
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Luiza",
+        	"departamento": "Back-End",
+        	"email": "luiza@example.com",
+        	"titulacao": "Professora"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8081/api/professores/1
+    name: Deletar
+    meta:
+      id: req_2585793e388b4c8e95961979d6eb4eb5
+      created: 1759603344637
+      modified: 1759614310956
+      isPrivate: false
+      description: ""
+      sortKey: -1759603344637
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_8661db2dee2c429eb17d34af2ee03ea5
+    created: 1759602934305
+    modified: 1759602934305
+environments:
+  name: Base Environment
+  meta:
+    id: env_0df524db8a16484a9ea9ea14dc02944f
+    created: 1759602934302
+    modified: 1759602934302
+    isPrivate: false

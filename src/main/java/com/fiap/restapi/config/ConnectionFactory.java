@@ -1,12 +1,10 @@
 package com.fiap.restapi.config;
 
-import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-@Component
 public class ConnectionFactory {
     private static final String URL =
             System.getenv().getOrDefault("ORACLE_URL","jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl");
@@ -20,7 +18,6 @@ public class ConnectionFactory {
             Properties props  = new Properties();
             props.setProperty("user", USER);
             props.setProperty("password", PASS);
-
             return DriverManager.getConnection(URL, props);
         }catch (SQLException e){
             throw new RuntimeException("Erro ao abrir conexão com o Oracle: " + e.getMessage(), e);

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Professor {
     private Long id;
     private String nome;
-    private String email;
     private String departamento;
+    private String email;
     private String titulacao;
 }

@@ -41,9 +41,9 @@ collection:
       mimeType: application/json
       text: |-
         {
-        	"nome": "Roger",
-        	"departamento": "Front-End",
-        	"email": "roger@example.com",
+        	"nome": "Fernando",
+        	"departamento": "Datascience",
+        	"email": "fernando@fiap.com",
         	"titulacao": "Doutor"
         }
     headers:
